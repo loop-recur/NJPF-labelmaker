@@ -1,0 +1,7 @@
+Javascript Label Maker
+
+Then cd into the directory and run:
+node app.js
+
+You should be able to access it at:
+http://localhost:4000

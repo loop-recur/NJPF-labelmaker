@@ -1,0 +1,22 @@
+!!! 5
+html(lang="en")
+	head
+		block stylesheets
+			link(href='css/south-street/jquery-ui-1.8.16.custom.css', rel='stylesheet', type='text/css')
+			link(href='css/jquery.jqGrid-4.2.0/ui.jqgrid.css', rel='stylesheet', type='text/css')
+			link(href='css/style.css', rel='stylesheet', type='text/css')
+		block scripts
+			script(src='http://www.google.com/jsapi')
+			script
+				google.load("jquery", "1.5.2");
+			script(src='js/jquery.jqGrid-4.2.0/js/grid.locale-en.js')
+			script(src='js/jquery.jqGrid-4.2.0/js/jquery.jqGrid.min.js')
+			script(src='js/jspdf/libs/base64.js')
+			script(src='js/jspdf/libs/sprintf.js')
+			script(src='js/jspdf/jspdf.js')
+			script(src='js/functional.js')
+			script(src='js/pdf.js')
+			script(src='js/grid.js')
+			script(src='js/application.js')
+	body
+		!{body}

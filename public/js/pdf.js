@@ -20,18 +20,21 @@ var Pdf = (function() {
 		
 		var starting_left = 10;
 		var starting_top = 15;
+		var line_height = 6;
 
 		// addLabel :: Position -> Row -> IO()
 		var addLabel = function(position, row) {
-			doc.text(position.left, position.top, row.district);
-			doc.text(position.left, position.top+10, row.location);
+			doc.text(position.left, position.top, row.owner);
+			doc.text(position.left, position.top+line_height, row.district);
+			doc.text(position.left, position.top+line_height*2, row.location);
+			doc.text(position.left, position.top+line_height*3, row.city + ", " + row.state + " " +row.zip);
 		}
 
 		// buildLabels :: Position -> Row -> Position
 		var buildLabels = function(position, row) {
 			var row_length = 3;
 			var horizontal_spacing = 75;
-			var vertical_spacing = 30;
+			var vertical_spacing = 40;
 
 			addLabel(position, row);
 

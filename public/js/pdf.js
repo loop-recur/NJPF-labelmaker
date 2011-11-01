@@ -16,33 +16,37 @@ var Pdf = (function() {
 	
 	var generate = function(records) {
 		var doc = new jsPDF();
-		doc.setFontSize(28);
-				
+		doc.setFontSize(11);
+		
+		var starting_left = 10;
+		var starting_top = 15;
+
 		// addLabel :: Position -> Row -> IO()
 		var addLabel = function(position, row) {
-			doc.text(position.top, position.left, row.district);
-			doc.text(position.top+10, position.left, row.location);
+			doc.text(position.left, position.top, row.district);
+			doc.text(position.left, position.top+10, row.location);
 		}
 
 		// buildLabels :: Position -> Row -> Position
 		var buildLabels = function(position, row) {
-			var horizontal_spacing = 245;
-			var vertical_spacing = 130;
+			var row_length = 3;
+			var horizontal_spacing = 75;
+			var vertical_spacing = 30;
 
 			addLabel(position, row);
 
 			var new_left = position.left + horizontal_spacing;
 			var new_top = position.top;
 
-			if(new_left > 184) {
+			if(new_left >= (horizontal_spacing * row_length)) {
 				new_top = position.top + vertical_spacing;
-				new_left = 20;
+				new_left = starting_left;
 			}
 
 			return {left: new_left, top: new_top}
 		}
 		
-		reduce(buildLabels, {left : 20, top : 35}, records);
+		reduce(buildLabels, {left : starting_left, top : starting_top}, records);
 		
 		window.location.href = doc.output('datauri');		
 	}

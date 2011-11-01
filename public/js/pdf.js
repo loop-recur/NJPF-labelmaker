@@ -18,16 +18,16 @@ var Pdf = (function() {
 		var doc = new jsPDF();
 		doc.setFontSize(28);
 				
-		// Position -> Row -> IO()
+		// addLabel :: Position -> Row -> IO()
 		var addLabel = function(position, row) {
 			doc.text(position.top, position.left, row.district);
 			doc.text(position.top+10, position.left, row.location);
 		}
 
-		// Position -> Row -> Position
+		// buildLabels :: Position -> Row -> Position
 		var buildLabels = function(position, row) {
-			var horizontal_spacing = 145;
-			var vertical_spacing = 30;
+			var horizontal_spacing = 245;
+			var vertical_spacing = 130;
 
 			addLabel(position, row);
 

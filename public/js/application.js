@@ -8,6 +8,10 @@ $(function(){
 			PdfController(records, labels).makePdf();
 		});
 	}
+
+	$("#generate").click(function(){
+		Pdf.generate(records);
+	});
 	
 });
 

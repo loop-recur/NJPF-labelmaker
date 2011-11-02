@@ -43,7 +43,7 @@ repeat = function(arg, n) {
 
 index = function(i, xs) {
 	return xs[i];
-}
+};
 
 random = function(i) {
 	return Math.floor(Math.random()*i);

@@ -5,7 +5,7 @@ $(function(){
 		populateSelect(labels); // labels from config
 		Grid.setup(records); // records set in show template
 		$("#generate").click(function(){
-			PdfController(records).makePdf();
+			PdfController(records, labels).makePdf();
 		});
 	}
 	
@@ -16,9 +16,8 @@ function populateSelect(labels) {
 	var dashJoin = compose("+'-'+");
 	
 	var makeOptions = function(label) {
-		var value = dashJoin(label.width, label.height);
 		var text = dashJoin(label.manufacturer, label.id);
-		$("#labels").append($('<option></option>').val(value).html(text));
+		$("#labels").append($('<option></option>').val(labels.indexOf(label)).html(text));
 	}
 	
 	map(makeOptions, labels);

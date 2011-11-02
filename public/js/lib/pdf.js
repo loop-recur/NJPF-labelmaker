@@ -20,12 +20,19 @@ var Pdf = (function() {
 		var width = width_height.split("-")[0];
 		var height = width_height.split("-")[1];
 		
+		var row_length = 3;
 		var starting_font_size = 11;
 		var starting_left = 10;
 		var starting_top = 15;
 		var line_height = 6;
 		
+		var starting_horizontal_spacing = 27;
+		var starting_vertical_spacing = 40;
+		
 		var font_size = height * starting_font_size;
+		
+		var horizontal_spacing = width * starting_horizontal_spacing;
+		var vertical_spacing = height * starting_vertical_spacing;
 		
 		doc.setFontSize(font_size);
 		
@@ -40,10 +47,7 @@ var Pdf = (function() {
 		}
 
 		var buildLabels = function(position, row) {
-			var row_length = 3;
-			var horizontal_spacing = 75;
-			var vertical_spacing = 40;
-
+			
 			addLabel(position, row);
 
 			var new_left = position.left + horizontal_spacing;

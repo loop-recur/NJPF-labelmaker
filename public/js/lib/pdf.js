@@ -14,23 +14,31 @@ var Pdf = (function() {
 		$("#preview").attr('src', output);
 	}
 	
-	var generate = function(records) {
+	var generate = defn(function(width_height, records) {
 		var doc = new jsPDF();
-		doc.setFontSize(11);
 		
+		var width = width_height.split("-")[0];
+		var height = width_height.split("-")[1];
+		
+		var starting_font_size = 11;
 		var starting_left = 10;
 		var starting_top = 15;
 		var line_height = 6;
+		
+		var font_size = height * starting_font_size;
+		
+		doc.setFontSize(font_size);
+		
+		var writeLine = defn(function(position, number, text) {
+			doc.text(position.left, position.top+line_height*number, text);
+			return number+1;
+		});
 
-		// addLabel :: Position -> Row -> IO()
 		var addLabel = function(position, row) {
-			doc.text(position.left, position.top, row.owner);
-			doc.text(position.left, position.top+line_height, row.district);
-			doc.text(position.left, position.top+line_height*2, row.location);
-			doc.text(position.left, position.top+line_height*3, row.city + ", " + row.state + " " +row.zip);
+			var lines = [row.owner, row.district, row.location, Formatter.address(row.city, row.state, row.zip)];
+			reduce(writeLine(position), 0, lines);
 		}
 
-		// buildLabels :: Position -> Row -> Position
 		var buildLabels = function(position, row) {
 			var row_length = 3;
 			var horizontal_spacing = 75;
@@ -52,7 +60,7 @@ var Pdf = (function() {
 		reduce(buildLabels, {left : starting_left, top : starting_top}, records);
 		
 		window.location.href = doc.output('datauri');		
-	}
+	});
 	
 return { preview : preview, generate: generate}
 

@@ -4,4 +4,5 @@ $(function(){
 	$("#generate").click(function(){
 		Pdf.generate(records);
 	});
+	
 });

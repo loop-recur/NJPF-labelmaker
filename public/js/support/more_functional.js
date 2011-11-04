@@ -89,3 +89,11 @@ flip = function(fn) {
 subtract = defn(function(x,y){
 	return y - x;
 });
+
+words = defn(function(x){
+	return x.split(/\s+/);
+});
+
+unwords = defn(function(xs){
+	return xs.join(" ");
+});

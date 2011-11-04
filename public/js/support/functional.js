@@ -13,6 +13,8 @@ arguments=[fns[i].apply(this,arguments)];return arguments[0];}}
 sequence=function(){var fns=map(Function.toFunction,arguments),arglen=fns.length;return function(){for(var i=0;i<arglen;i++)
 arguments=[fns[i].apply(this,arguments)];return arguments[0];}}
 map=defn(function(fn,sequence){fn=Function.toFunction(fn);var len=sequence.length,result=new Array(len);for(var i=0;i<len;i++)
+result[i]=fn.apply(null,[sequence[i]]);return result;})
+mapI=defn(function(fn,sequence){fn=Function.toFunction(fn);var len=sequence.length,result=new Array(len);for(var i=0;i<len;i++)
 result[i]=fn.apply(null,[sequence[i],i]);return result;})
 reduce=defn(function(fn,init,sequence){fn=Function.toFunction(fn);var len=sequence.length,result=init;for(var i=0;i<len;i++)
 result=fn.apply(null,[result,sequence[i]]);return result;})

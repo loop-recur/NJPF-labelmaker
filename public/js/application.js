@@ -4,13 +4,12 @@ $(function(){
 	if(isShowPage) {
 		var Controller = PdfController(records, labels);
 		
-		$('#Az').click(function() {
-			var _fixNames = function(e) {
-				var $e = $(e);
-				$e.text($e.text().toLowerCase());
-			}
-			map(_fixNames, $("[aria-describedby=list_owner]"))
-		});
+		var getTextFields = function() {
+			_makeSelector = compose(join(", "), map(compose("'[aria-describedby=list_'+", "+']'")));
+			return $('.ui-state-highlight').find(_makeSelector(["owner", "location", "owneraddr"]));
+		}
+		
+		$('#Az').click(compose(DataCleaner.fixCapitalization, getTextFields));
 		
 		var _showPreview = function(id) {
 			var _getLines = compose(join('<br>'), Formatter.line);

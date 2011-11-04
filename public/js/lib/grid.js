@@ -1,5 +1,5 @@
 var Grid = (function() {	
-	function setup(records) {
+	function setup(selectFun, records) {
 		var $el = $("#list");
 		var lastSel;
 
@@ -39,7 +39,7 @@ var Grid = (function() {
 			  onSelectRow: function(id) {
 					if(id !== lastSel) {
 						$el.saveRow(lastSel); //todo, save record too.
-						Pdf.preview(records[id-1]);
+						selectFun([id-1]);
 						lastSel = id;
 					}
 				},

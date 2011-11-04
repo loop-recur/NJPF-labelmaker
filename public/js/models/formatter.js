@@ -4,5 +4,9 @@ var Formatter = (function() {
 		return city +", "+ state + " " + zip;
 	}
 	
-	return {address : address}
+	var line = function(row) {
+		return [row.owner, row.district, row.location, address(row.city, row.state, row.zip)];
+	}
+	
+	return {line : line}
 })();

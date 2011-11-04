@@ -6,9 +6,7 @@ html(lang="en")
 			link(href='css/jquery.jqGrid-4.2.0/ui.jqgrid.css', rel='stylesheet', type='text/css')
 			link(href='css/style.css', rel='stylesheet', type='text/css')
 		block scripts
-			script(src='http://www.google.com/jsapi')
-			script
-				google.load("jquery", "1.5.2");
+			script(src='js/support/jquery-1.6.2.min.js')
 			script(src='js/support/jquery.jqGrid-4.2.0/js/grid.locale-en.js')
 			script(src='js/support/jquery.jqGrid-4.2.0/js/jquery.jqGrid.min.js')
 			script(src='js/support/jspdf/libs/base64.js')
@@ -17,6 +15,7 @@ html(lang="en")
 			script(src='js/support/functional.js')
 			script(src='js/support/combinators.js')
 			script(src='js/support/more_functional.js')
+			script(src='js/helpers/dom_helpers.js')
 			script(src='js/config/labels.js')
 			script(src='js/models/formatter.js')
 			script(src='js/controllers/pdf_controller.js')

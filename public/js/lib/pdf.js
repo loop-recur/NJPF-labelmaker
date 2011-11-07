@@ -2,26 +2,24 @@ var Pdf = (function() {
 	
 	var generate = defn(function(label, records) {
 		var doc = new jsPDF();
+		var pixel_conversion_number = 29;
 		
 		var width = label.width;
 		var height = label.height;
 		var amount_per_page = label.amount_per_page;
 		
-		var starting_row_length = 8;
-		var starting_font_size = (width > 2) ? 7 : 11;
-		var starting_left = 0;
-		var starting_top = 20.5;
-		var starting_line_height = 6;
-
-		var starting_horizontal_spacing = 36;
-		var starting_vertical_spacing = 30.5;
+		var paper_width = 8.5;
 		
-		var font_size = height * starting_font_size;
-		var horizontal_spacing = width * starting_horizontal_spacing;
-		var vertical_spacing = height * starting_vertical_spacing;
-		var line_height = height * starting_line_height;
-		var row_length = Math.floor(starting_row_length / width);
-		log(horizontal_spacing);
+		var left_margin = label.left_margin;
+		var top_margin = 20 + label.top_margin; // what is 20?
+
+		var horizontal_spacing = (width + label.horizontal_spacing) * pixel_conversion_number;
+		var vertical_spacing = (height + label.vertical_spacing) * pixel_conversion_number;
+		
+		var font_size = (width + height) * 3;
+		var line_height = font_size / 2;
+		
+		var column_amount = Math.floor(paper_width / width);
 		
 		var writeLine = defn(function(top, left, number, text) {
 			doc.text(left, top+line_height*number, text);
@@ -35,27 +33,29 @@ var Pdf = (function() {
 		var buildLabels = function(state, row) {
 			addLabel(state.top, state.left, row);
 			
-			var new_amount = state.current_amount+1;
-			var new_left = state.left + horizontal_spacing;
-			var new_top = state.top;
+			var next_column = (state.current_column >= column_amount) ?  1 : (state.current_column + 1);
+			
+			var next_amount = state.current_amount+1;
+			var next_left = horizontal_spacing * state.current_column;
+			var next_top = state.top;
+			
+			if(next_column == 1) {
+				next_top = state.top + vertical_spacing;
+				next_left = left_margin;
+			}
 
-			if(new_left >= (horizontal_spacing * row_length)) {
-				new_top = state.top + vertical_spacing;
-				new_left = starting_left;
-			}
-			
-			if(new_amount >= amount_per_page) {
+			if(next_amount >= amount_per_page) {
 				doc.addPage();
-				new_amount = 0;
-				new_top = starting_top;
-				new_left = starting_left;
+				next_amount = 0;
+				next_top = top_margin;
+				next_left = left_margin;
 			}
 			
-			return {left: new_left, top: new_top, current_amount: new_amount}
+			return {left: next_left, top: next_top, current_amount: next_amount, current_column: next_column}
 		}
 		
 		doc.setFontSize(font_size);
-		reduce(buildLabels, {left : starting_left, top : starting_top, current_amount: 0}, records);
+		reduce(buildLabels, {left : left_margin, top : top_margin, current_amount: 0, current_column: 1}, records);
 		return doc.output('datauri');
 	});
 	

@@ -5,7 +5,7 @@ var Formatter = (function() {
 	}
 	
 	var line = function(row) {
-		return [row.owner, row.district, row.location, address(row.city, row.state, row.zip)];
+		return [row.owner, row.location, address(row.city, row.state, row.zip)];
 	}
 	
 	return {line : line}

@@ -18,6 +18,8 @@ $(function(){
 		$("#generate").click(function() {
 			window.location.href = Controller.makePdf();
 		});
+		
+		PushSwitch($("#Address li"));
 	}
 });
 
@@ -31,4 +33,13 @@ function populateSelect(labels) {
 	}
 	
 	map(makeOptions, labels);
+}
+
+
+function PushSwitch($element) {
+	$element.click(function() {
+		var isActive = $(this).hasClass("active");
+		$element.removeClass("active");			
+		if(!isActive) $(this).addClass('active');
+	});
 }

@@ -79,6 +79,7 @@ String.prototype.lambda=function(){var params=[],expr=this,sections=expr.ECMAspl
 if(rightSection){params.push('$2');expr=expr+'$2';}}else{var vars=this.replace(/(?:\b[A-Z]|\.[a-zA-Z_$])[a-zA-Z_$\d]*|[a-zA-Z_$][a-zA-Z_$\d]*\s*:|this|arguments|'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"/g,'').match(/([a-z_$][a-z_$\d]*)/gi)||[];for(var i=0,v;v=vars[i++];)
 params.indexOf(v)>=0||params.push(v);}}
 return new Function(params,'return ('+expr+')');}
+String.prototype.L = String.prototype.lambda;
 String.prototype.lambda.cache=function(){var proto=String.prototype,cache={},uncached=proto.lambda,cached=function(){var key='#'+this;return cache[key]||(cache[key]=uncached.call(this));};cached.cached=function(){};cached.uncache=function(){proto.lambda=uncached};proto.lambda=cached;}
 String.prototype.apply=function(thisArg,args){return this.toFunction().apply(thisArg,args);}
 String.prototype.call=function(){return this.toFunction().apply(arguments[0],Array.prototype.slice.call(arguments,1));}

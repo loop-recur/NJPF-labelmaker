@@ -39,7 +39,7 @@ var Grid = (function() {
 			  onSelectRow: function(id) {
 					if(id !== lastSel) {
 						$el.saveRow(lastSel); //todo, save record too.
-						selectFun([id-1]);
+						selectFun([id]);
 						lastSel = id;
 					}
 				},

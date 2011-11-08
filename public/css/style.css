@@ -138,11 +138,19 @@ span.customStyleSelectBox.changed {  }
 	border:none;
 }
 
+#Flip:active {
+	background: url("../images/lm_nameorder_swap_down.png") no-repeat;
+}
+
 #Az {
 	background: url("../images/lm_capitalization_swap.png") no-repeat;
 	width: 90px;
 	height:45px;
 	border:none;
+}
+
+#Az:active {
+	background: url("../images/lm_capitalization_swap_down.png") no-repeat;
 }
 
 #generate {
@@ -153,6 +161,10 @@ span.customStyleSelectBox.changed {  }
 	margin-left: 9.375%;
 	margin-right:9.375%;
 	font-size: 20px;
+}
+
+#generate:active {
+	background: url("../images/lm_go_button_down.png") no-repeat;
 }
 
 /*GRID AREA */

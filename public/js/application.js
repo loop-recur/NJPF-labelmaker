@@ -1,4 +1,6 @@
 $(function(){
+	$('select[multiple!=true]').customStyle();
+
 	var isShowPage = $("#list")[0];	
 
 	if(isShowPage) {
@@ -33,6 +35,7 @@ function populateSelect(labels) {
 	}
 	
 	map(makeOptions, labels);
+	$("#labels").trigger("change");
 }
 
 

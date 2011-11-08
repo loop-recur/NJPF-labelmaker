@@ -1,13 +1,69 @@
-.grid {
-	height: 500px;
-	width: 700px;
+#label-maker {
+	width: 1150px;
+	height:auto;
+	margin: 0 auto;
+}
+
+/* PREVIEW AREA */
+
+#labels {
+	width: 70%;
+	margin-left: 15%;
+	margin-right:15%;
+}
+
+.preview-options {
+	width: 400px;
+	height: 400px;
+	float:right;
+}
+
+#preview-container {
+	padding: 10px;
+	border: 1px inset;
+	width: 350px;
+	height: 152px;
+	margin: 20px auto;
 }
 
 #preview {
-	padding: 10px;
-	border: 1px inset;
-	width: 300px;
-	height: 72px;
+	background: white;
+	padding: 20px;
+	width: 280px;
+	margin: 15px auto;
+	height: 80px;
+}
+
+.text-options {
+	width: 230px;
+	margin:0 auto;
+}
+
+#Flip {
+	width: 170px;
+	margin-right:10px;
+}
+
+#Az {
+	width: 50px;
+}
+
+#generate {
+ 	width: 50%;
+	margin-left: 25%;
+	margin-right:25%;
+}
+
+/*GRID AREA */
+#grid {
+	height: 350px;
+	width: 700px;
+	margin-right:50px;
+	float:left;
+}
+
+.grid-options {
+	
 }
 
 

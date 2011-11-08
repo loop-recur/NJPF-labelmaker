@@ -1,24 +1,31 @@
 script
 	var records = !{records};
-div.grid
-	table#list
+	
+div#label-maker
+	div.preview-options
+		
+		select#labels
+		div#preview-container
+			div#preview
+		
+		div.text-options
+			button#Flip Last Name <-> First Name
+			button#Az AZ-az
+		
+		br
+		input#generate(type="submit", value="Create Labels")
 
-
-div#preview
-br
-select#labels
-input#generate(type="submit", value="create")
-button#Az AZ-az
-button#Flip Last Name <-> First Name
-
-h2 Address
-ul#Address
-	li#Residents
-		a resident
-	li#Owner
-		a owner
-
-h2 Addressee Options
-label(for="use_custom") Use Custom Name
-	input(type="checkbox", id="use_custom")
-input#CustomNameField(type="text")
+	div#grid
+		table#list
+	
+		div.grid-options
+			h2 Address
+			ul#Address
+				li#Residents
+					a resident
+				li#Owner
+					a owner
+			h2 Addressee Options
+			label(for="use_custom") Use Custom Name
+				input(type="checkbox", id="use_custom")
+			input#CustomNameField(type="text")

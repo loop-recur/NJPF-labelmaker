@@ -9,8 +9,8 @@ div#label-maker
 			div#preview
 		
 		div.text-options
-			button#Flip Last Name <-> First Name
-			button#Az AZ-az
+			button#Flip
+			button#Az
 		
 		br
 		input#generate(type="submit", value="Create Labels")
@@ -19,12 +19,13 @@ div#label-maker
 		table#list
 	
 		div.grid-options
-			h2 Address
+			h2 Send to:
 			ul#Address
 				li#Residents
 					a resident
 				li#Owner
 					a owner
+			div.clear
 			h2 Addressee Options
 			label(for="use_custom") Use Custom Name
 				input(type="checkbox", id="use_custom")

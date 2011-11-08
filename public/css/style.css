@@ -1,3 +1,7 @@
+.clear {
+	clear:both;
+}
+
 #label-maker {
 	width: 1150px;
 	height:auto;
@@ -19,39 +23,46 @@
 }
 
 #preview-container {
-	padding: 10px;
-	border: 1px inset;
-	width: 350px;
-	height: 152px;
+	background: url("../images/lm_preview_full_bg.png") no-repeat;
+	width: 400px;
+	height: 200px;
 	margin: 20px auto;
 }
 
 #preview {
-	background: white;
-	padding: 20px;
-	width: 280px;
+	padding: 60px;
+	width: 260px;
 	margin: 15px auto;
 	height: 80px;
 }
 
 .text-options {
-	width: 230px;
+	width: 245px;
 	margin:0 auto;
 }
 
 #Flip {
-	width: 170px;
-	margin-right:10px;
+	background: url("../images/lm_nameorder_swap.png") no-repeat;
+	width: 153px;
+	height:45px;
+	border:none;
 }
 
 #Az {
-	width: 50px;
+	background: url("../images/lm_capitalization_swap.png") no-repeat;
+	width: 90px;
+	height:45px;
+	border:none;
 }
 
 #generate {
- 	width: 50%;
-	margin-left: 25%;
-	margin-right:25%;
+	background: url("../images/lm_go_button.png") no-repeat;
+	border:none;
+ 	width: 325px;
+	height:75px;
+	margin-left: 9.375%;
+	margin-right:9.375%;
+	font-size: 20px;
 }
 
 /*GRID AREA */
@@ -66,6 +77,41 @@
 	
 }
 
+.grid-options h2 {
+	font-size:14px;
+}
+
+.grid-options ul {
+	list-style:none;
+}
+
+.grid-options ul li {
+	float: left;
+	height:45px;
+	width:115px;
+}
+
+.grid-options ul li a {
+	display: block;
+	text-align: center;
+	margin-top: 10px;
+}
+
+#Residents {
+	background: url("../images/lm_toggle_left_up.png") no-repeat;
+}
+
+#Residents_active {
+	background: url("../images/lm_toggle_left_down.png") no-repeat;
+}
+
+#Owner {
+	background: url("../images/lm_toggle_right_up.png") no-repeat;
+}
+
+#Owner_active {
+	background: url("../images/lm_toggle_right_down.png") no-repeat;
+}
 
 .active {
 	background-color: yellow;

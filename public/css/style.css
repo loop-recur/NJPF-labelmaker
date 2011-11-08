@@ -1,15 +1,207 @@
-.grid {
-	height: 500px;
-	width: 700px;
+/* 
+ * Reset Stylesheet
+ */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}                  
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section { 
+    display:block;
+}
+
+nav ul { list-style:none; }
+
+blockquote, q { quotes:none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after { content:''; content:none; }
+
+a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; }
+
+ins { background-color:#ff9; color:#000; text-decoration:none; }
+
+mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold; }
+
+del { text-decoration: line-through; }
+
+abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help; }
+
+/* tables still need cellspacing="0" in the markup */
+table { border-collapse:collapse; border-spacing:0; }
+
+hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0; }
+
+input, select { 
+	vertical-align:middle; 
+	}
+	
+input[type=text], input[type=password] {
+	border: 2px solid #9CC5E5;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+/* END RESET CSS */
+
+/* CUSTOM SELECT */
+
+.customStyleSelectBox {
+	font-size: 13.5px;
+	-moz-box-shadow: 0 0 2px #888;
+	-webkit-box-shadow: 0 0 2px#888;
+	box-shadow: 0 0 2px #888;
+}
+
+.customStyleSelectBox {
+	font-size: 13.5px;
+	-moz-box-shadow: 0 0 2px #888;
+	-webkit-box-shadow: 0 0 2px#888;
+	box-shadow: 0 0 2px #888;
+}
+
+span.customStyleSelectBox { font-size:11px; background-color: #fff; color:#7c7c7c; border:1px solid #ccc; height: 23px; }
+span.customStyleSelectBox.changed {  }
+.customStyleSelectBoxInner { background:url("../images/lm_dropdown_arrow.png") no-repeat center right; padding: 5px 10px; height: 13px;}
+
+
+/* END CUSTOM SELECT*/
+.clear {
+	clear:both;
+}
+
+#label-maker {
+	width: 1150px;
+	height:auto;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+/* PREVIEW AREA */
+
+.label-container {
+	width: 370px;
+	margin:0 auto;
+}
+#labels {
+	width: 350px;
+}
+
+.preview-options {
+	width: 400px;
+	height: 400px;
+	float:right;
+}
+
+#preview-container {
+	background: url("../images/lm_preview_full_bg.png") no-repeat;
+	width: 400px;
+	height: 200px;
+	margin: 20px auto;
 }
 
 #preview {
-	padding: 10px;
-	border: 1px inset;
-	width: 300px;
-	height: 72px;
+	padding: 60px;
+	width: 260px;
+	margin: 15px auto;
+	height: 80px;
 }
 
+.text-options {
+	width: 245px;
+	margin:0 auto;
+}
+
+#Flip {
+	background: url("../images/lm_nameorder_swap.png") no-repeat;
+	width: 153px;
+	height:45px;
+	border:none;
+}
+
+#Az {
+	background: url("../images/lm_capitalization_swap.png") no-repeat;
+	width: 90px;
+	height:45px;
+	border:none;
+}
+
+#generate {
+	background: url("../images/lm_go_button.png") no-repeat;
+	border:none;
+ 	width: 325px;
+	height:75px;
+	margin-left: 9.375%;
+	margin-right:9.375%;
+	font-size: 20px;
+}
+
+/*GRID AREA */
+#grid {
+	height: 350px;
+	width: 700px;
+	margin-right:50px;
+	float:left;
+}
+
+.grid-options {
+	
+}
+
+.grid-options h2 {
+	font-size:14px;
+}
+
+.grid-options ul {
+	list-style:none;
+}
+
+.grid-options ul li {
+	float: left;
+	height:45px;
+	width:115px;
+}
+
+.grid-options ul li a {
+	display: block;
+	text-align: center;
+	margin-top: 10px;
+}
+
+#Residents {
+	background: url("../images/lm_toggle_left_up.png") no-repeat;
+}
+
+#Residents.active {
+	background: url("../images/lm_toggle_left_down.png") no-repeat;
+}
+
+#Owner {
+	background: url("../images/lm_toggle_right_up.png") no-repeat;
+}
+
+#Owner.active {
+	background: url("../images/lm_toggle_right_down.png") no-repeat;
+}
 
 .active {
 	background-color: yellow;

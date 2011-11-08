@@ -45,6 +45,10 @@ index = function(i, xs) {
 	return xs[i];
 };
 
+first = function(xs) {
+	return xs[0];
+};
+
 random = function(i) {
 	return Math.floor(Math.random()*i);
 }
@@ -96,4 +100,8 @@ words = defn(function(x){
 
 unwords = defn(function(xs){
 	return xs.join(" ");
+});
+
+ifelse = defn(function(pred, f, g) {
+	return pred() ? f() : g();
 });

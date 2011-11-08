@@ -11,7 +11,8 @@ var _firstToUpper = Match (
 
 var _updateTableData = Combinators.f_x_h_g_x(_setText, _getText);
 var _capitalizeFirstLetter = compose(unwords, map(_firstToUpper), words);
-var fixCapitalization = compose(map(_updateTableData.p(_capitalizeFirstLetter)));
+var fixCapitalization = map(_updateTableData.p(_capitalizeFirstLetter));
+var toUpperCase = map(_updateTableData.p(lambda('.toUpperCase()')));
 	
-return { fixCapitalization: fixCapitalization }
+return { fixCapitalization: fixCapitalization, toUpperCase : toUpperCase }
 })();

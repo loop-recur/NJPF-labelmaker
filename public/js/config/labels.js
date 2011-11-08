@@ -1,4 +1,4 @@
-var labels = 
+var Labels = 
 [
 // 10 per page
 	{ manufacturer: "avery", id: 5163, width:4.00, height:2.00, amount_per_page: 10

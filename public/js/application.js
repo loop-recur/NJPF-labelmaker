@@ -2,27 +2,26 @@ $(function(){
 	var isShowPage = $("#list")[0];	
 
 	if(isShowPage) {
-		var Controller = PdfController(records, labels);
 		
-		var _makeSelector = compose(join(", "), map(compose("'[aria-describedby=list_'+", "+']'")));
-		var getTextFields = compose($.find, '".ui-state-highlight >"+', _makeSelector);
+		$("#Az").click(CleanerController.toggleUpperCase);
 		
-		$('#Az').click(compose(DataCleaner.fixCapitalization, getTextFields.p(["owner", "location", "owneraddr"])));
+		populateSelect(Labels);
+
+		Grid.setup(showPreview(), Records.all()); // set in show template
 		
-		var _getLines = compose(join('<br>'), Formatter.line);
-		var _getHtml = compose(_getLines, index.p(0), Controller.getRecords);
-		var _showPreview = Combinators.f_g_h_x(lambda('x.html(y)'), jQuerySelect("#preview"), _getHtml);
-		
-		populateSelect(labels); // labels from config
-		Grid.setup(_showPreview, records); // records set in show template
 		$("#generate").click(function() {
-			window.location.href = Controller.makePdf();
+			window.location.href = PdfController.makePdf();
 		});
 		
 		PushSwitch($("#Address li"));
 	}
 });
 
+function showPreview() {
+	var _getLines = compose(join('<br>'), Formatter.line);
+	var _getHtml = compose(_getLines, Records.toRecord, CleanerController.getAllFields);
+	return Combinators.f_g_h_x(lambda('x.html(y)'), jQuerySelect("#preview"), _getHtml);
+}
 
 function populateSelect(labels) {
 	var dashJoin = compose("+'-'+");

@@ -31,6 +31,8 @@ controllers.setup(app);
 // Only listen on $ node app.js
 
 if (!module.parent) {
-  app.listen(5000);
+	
+	var port = process.env.PORT || 4000;
+  app.listen(port);
   console.log("Express server listening on port %d", app.address().port);
 }

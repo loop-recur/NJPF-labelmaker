@@ -4,10 +4,9 @@ var _makeSelector = map(compose("'[aria-describedby=list_'+", "+']'"));
 
 var getSelectedFields = compose($.find, join(", "), map('".ui-state-highlight > "+'), _makeSelector);
 
-// var getAllFields = compose(join(", "), compose(lambda("+").p());
-var getAllFields = function(id) {
-	return $('#' + id).find(_makeSelector(["owner", "location", "owneraddr", "city", "state", "zip"]).join(","));
-}
+var _makeId = lambda("'#'+");
+var _makeSelectionFields = compose(join(", "), _makeSelector.p(["owner", "location", "owneraddr", "city", "state", "zip"]));
+var getAllFields = Combinators.f_g_x_h(lambda("x.find(y)"), compose($, _makeId), _makeSelectionFields);
 
 var allTextFields = getSelectedFields.p(["owner", "location", "owneraddr"]);
 

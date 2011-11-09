@@ -16,7 +16,7 @@ var _setOwnerAddress = ifelse(ShowView.ownerSelected, set('location', pluck('own
 
 var _setCustomAddressee = ifelse(ShowView.useCustomField, set('owner', ShowView.customFieldText), id);
 
-var toRecord = compose(_setCustomAddressee, log, _setOwnerAddress, log, _getRecord);
+var toRecord = compose(_setCustomAddressee, _setOwnerAddress, _getRecord);
 
 return {setup: setup, all: all, toRecord: toRecord}
 })();

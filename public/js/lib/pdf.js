@@ -2,7 +2,7 @@ var Pdf = (function() {
 	
 	var generate = defn(function(label, records) {
 		var doc = new jsPDF();
-		var pixel_conversion_number = 29;
+		var pixel_conversion_number = 30.3;
 		
 		var width = label.width;
 		var height = label.height;
@@ -36,7 +36,7 @@ var Pdf = (function() {
 			var next_column = (state.current_column >= column_amount) ?  1 : (state.current_column + 1);
 			
 			var next_amount = state.current_amount+1;
-			var next_left = horizontal_spacing * state.current_column;
+			var next_left = horizontal_spacing * state.current_column + left_margin;
 			var next_top = state.top;
 			
 			if(next_column == 1) {

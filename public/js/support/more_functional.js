@@ -1,6 +1,9 @@
 when = function(arg,f){
 	var bool = (typeof arg == "boolean") ? arg : arg();
-	if(bool) f();
+	
+	return function() {
+		if(bool) f.apply(this, arguments);
+	}
 }
 
 take = function(n, xs) {
@@ -103,5 +106,26 @@ unwords = defn(function(xs){
 });
 
 ifelse = defn(function(pred, f, g) {
-	return pred() ? f() : g();
+	return function() {
+		return pred() ? f.apply(this, arguments) : g.apply(this, arguments);
+	}
 });
+
+var tupleToObj = function(xs) {
+	var obj = {};
+	for(var i=0;i<xs.length;i++ ) {
+		obj[xs[i][0]] = xs[i][1];
+	}
+	return obj;
+}
+
+set = function(attribute, fun) {
+	var f = fun.toFunction()
+	return function(x) {
+		log("x");
+		log(x);
+		x[attribute] = f(x);
+		return x;
+	}
+	
+};

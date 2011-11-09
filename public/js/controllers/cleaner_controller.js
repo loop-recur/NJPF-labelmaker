@@ -6,7 +6,7 @@ var _upperCaseEverything = compose(DataCleaner.toUpperCase, ShowView.allTextFiel
 
 var _allCaps = compose(match(/[A-Z]$/), join(""), map('.text()'), map($), ShowView.allTextFields);
 
-var toggleUpperCase = ifelse.p(_allCaps, _fixCapitalization, _upperCaseEverything);
+var toggleUpperCase = ifelse(_allCaps, _fixCapitalization, _upperCaseEverything);
 
 var flipNames = compose(DataCleaner.flipNames, ShowView.ownerField);
 

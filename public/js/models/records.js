@@ -6,14 +6,17 @@ var setup = function(r) { records = r }
 
 var all = function() { return records };
 
-var toRecord = defn(function($elements) {
-	var fields = map(compose('.text()', $), $elements);
-	var record = {location : fields[0], city : fields[1], state : fields[2], zip: fields[3], owner: fields[4] };
-	if(ShowView.ownerSelected()) record.location = fields[5];
-	if(ShowView.useCustomField()) record.owner = ShowView.customFieldText();
-	
-	return record;
-});
+var _getText = map(compose('.text()', $));
+
+var _transformToRecord = compose(tupleToObj, zip.p(["location", "city", "state", "zip", "owner", "owner_addr"]));
+
+var _getRecord = compose(_transformToRecord, _getText);
+
+var _setOwnerAddress = ifelse(ShowView.ownerSelected, set('location', pluck('owner_addr')), id);
+
+var _setCustomAddressee = ifelse(ShowView.useCustomField, set('owner', ShowView.customFieldText), id);
+
+var toRecord = compose(_setCustomAddressee, log, _setOwnerAddress, log, _getRecord);
 
 return {setup: setup, all: all, toRecord: toRecord}
 })();

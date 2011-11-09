@@ -69,5 +69,5 @@ function PushSwitch($element) {
 
 
 return {init: init, ownerSelected : ownerSelected, useCustomField: useCustomField,
-				customFieldText: customFieldText, ownerField: ownerField, allTextFields: allTextFields}
+				customFieldText: customFieldText, ownerField: ownerField, allTextFields: allTextFields, getAllFields: getAllFields}
 })();

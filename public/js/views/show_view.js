@@ -4,6 +4,7 @@ var _makeSelector = map(compose("'[aria-describedby=list_'+", "+']'"));
 
 var getSelectedFields = compose($.find, join(", "), map('".ui-state-highlight > "+'), _makeSelector);
 
+// var getAllFields = compose(join(", "), compose(lambda("+").p());
 var getAllFields = function(id) {
 	return $('#' + id).find(_makeSelector(["owner", "location", "owneraddr", "city", "state", "zip"]).join(","));
 }
@@ -23,7 +24,10 @@ var init = function() {
 	Grid.setup(showPreview, Records.all());
 	PushSwitch($("#Address li"));	
 	
-	var reloadPreview = function(){showPreview([$(".ui-state-highlight").attr("id")])};
+	var reloadPreview = function(){
+		var selectedId = $(".ui-state-highlight").attr("id");
+		if(selectedId) showPreview([selectedId]);
+	};
 	
 	$("#Address li").click(reloadPreview);
 	$("#use_custom").change(reloadPreview);

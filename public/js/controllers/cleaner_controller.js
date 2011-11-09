@@ -4,7 +4,7 @@ var _fixCapitalization = compose(DataCleaner.fixCapitalization, ShowView.allText
 
 var _upperCaseEverything = compose(DataCleaner.toUpperCase, ShowView.allTextFields);
 
-var _allCaps = compose(match(/[A-Z]$/), '.text()', $, first, ShowView.ownerField);
+var _allCaps = compose(match(/[A-Z]$/), join(""), map('.text()'), map($), ShowView.allTextFields);
 
 var toggleUpperCase = ifelse.p(_allCaps, _fixCapitalization, _upperCaseEverything);
 

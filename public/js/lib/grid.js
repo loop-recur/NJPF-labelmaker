@@ -33,6 +33,7 @@ var Grid = (function() {
 					{name:'totalvalue',index:'totalvalue', sorttype: "string", editable:true},
 		   	],
 		   	multiselect: true,
+				multiboxonly: true,
 				ondblClickRow: function(id){
 					$el.editRow(id, true);
 				},

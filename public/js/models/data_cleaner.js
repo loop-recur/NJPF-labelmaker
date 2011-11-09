@@ -14,7 +14,7 @@ var _flipNames = compose(replace(/(.*),(.*)/, "$2 $1"), replace(/(.*),(.*) & (.*
 
 var _updateTableData = Combinators.f_x_h_g_x(_setText, _getText);
 
-var _capitalizeFirstLetter = compose(unwords, map(_firstToUpper), words);
+var _capitalizeFirstLetter = compose(unwords, map(_firstToUpper), filter(id), words);
 
 var fixCapitalization = map(_updateTableData.p(_capitalizeFirstLetter));
 

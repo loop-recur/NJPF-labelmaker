@@ -2,6 +2,7 @@
   "name": "label-maker",
   "version": "0.0.1",
   "dependencies": {
-    "express": "2.4.7"
+    "express": "2.4.7",
+		"connect-form": "0.2.1"
   }
 }

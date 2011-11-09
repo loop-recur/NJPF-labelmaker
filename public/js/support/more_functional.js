@@ -82,9 +82,9 @@ nnnot = function(bool) {
 	return !bool;
 }
 
-replace = function(pattern, sub, str) {
+replace = defn(function(pattern, sub, str) {
 	return str.replace(pattern, sub);
-}
+});
 
 flip = function(fn) {
 	return fn.flip();

@@ -226,3 +226,14 @@ span.customStyleSelectBox.changed {  }
 	top: 150px;
 	left: 250px;
 }
+
+.selected {
+	width: 700px;
+	font-size: 12px;
+	text-align:right;
+}
+
+.grid-manage {
+	width: 200px;
+	float:right;
+}

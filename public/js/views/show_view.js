@@ -16,6 +16,8 @@ var ownerSelected = function() { return $("#Address .active").attr('id') == "Own
 
 var useCustomField = function() { return $("#use_custom").is(":checked"); }
 
+var onlyWhenOwnerDoesNotReside = function() { return $("#use_only_if_owner_does_not_reside_at_address").is(":checked"); }
+
 var customFieldText = function(){ return $("#CustomNameField").val(); }
 
 var init = function() {
@@ -28,8 +30,17 @@ var init = function() {
 		if(selectedId) showPreview([selectedId]);
 	};
 	
+	$("#export").submit(function() {
+		getRecords = compose(map(getAllFields), map('x.id'), jQuerySelect('.ui-state-highlight'));
+		var csv = compose(CSV.create('\t'), log,getRecords);
+		log(csv());
+		// $(this).parents('form').submit();
+		return false;
+	});
+	
 	$("#Address li").click(reloadPreview);
 	$("#use_custom").change(reloadPreview);
+	$("#use_only_if_owner_does_not_reside_at_address").change(reloadPreview);
 	$("#CustomNameField").change(reloadPreview);
 	
 	$("#Az").click(compose(reloadPreview, compose(CleanerController.toggleUpperCase, allTextFields)));
@@ -69,5 +80,6 @@ function PushSwitch($element) {
 
 
 return {init: init, ownerSelected : ownerSelected, useCustomField: useCustomField,
-				customFieldText: customFieldText, ownerField: ownerField, allTextFields: allTextFields, getAllFields: getAllFields}
+				customFieldText: customFieldText, ownerField: ownerField, allTextFields: allTextFields, getAllFields: getAllFields,
+				onlyWhenOwnerDoesNotReside: onlyWhenOwnerDoesNotReside}
 })();

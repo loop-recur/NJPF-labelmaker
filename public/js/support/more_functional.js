@@ -107,7 +107,7 @@ unwords = defn(function(xs){
 
 ifelse = defn(function(pred, f, g) {
 	return function() {
-		return pred() ? f.apply(this, arguments) : g.apply(this, arguments);
+		return pred.apply(this, arguments) ? f.apply(this, arguments) : g.apply(this, arguments);
 	}
 });
 
@@ -122,10 +122,9 @@ var tupleToObj = function(xs) {
 set = function(attribute, fun) {
 	var f = fun.toFunction()
 	return function(x) {
-		log("x");
-		log(x);
 		x[attribute] = f(x);
 		return x;
 	}
 	
 };
+

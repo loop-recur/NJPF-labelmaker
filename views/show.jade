@@ -2,6 +2,15 @@ script
 	Records.setup(!{records});
 	
 div#label-maker
+	div#upload-form(style=records.length ? "display:none;" : "display:visible;")
+		form(method="post", action="/create", enctype="multipart/form-data")
+			div
+				div
+					span Import
+					br
+					input(type="file", name="labels")
+				div
+					input(type="submit", value="send")
 	div.preview-options
 		
 		div.label-container
@@ -31,3 +40,11 @@ div#label-maker
 			label(for="use_custom") Use Custom Name
 				input(type="checkbox", id="use_custom")
 			input#CustomNameField(type="text")
+			br
+			label(for="use_only_if_owner_does_not_reside_at_address") Only use when owner does not reside at the address
+				input(type="checkbox", id="use_only_if_owner_does_not_reside_at_address")
+			br
+			form#export(method="post", action="/export.wtg")
+				div
+					div
+					input(type="submit", value="Export")

@@ -94,6 +94,7 @@ span.customStyleSelectBox.changed {  }
 	height:auto;
 	margin: 0 auto;
 	margin-top: 40px;
+	position: relative;
 }
 
 /* PREVIEW AREA */
@@ -217,4 +218,11 @@ span.customStyleSelectBox.changed {  }
 
 .active {
 	background-color: yellow;
+}
+
+#upload-form {
+	position: absolute;
+	z-index: 100;
+	top: 150px;
+	left: 250px;
 }

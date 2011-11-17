@@ -16,7 +16,13 @@ var _setOwnerAddress = ifelse(ShowView.ownerSelected, set('location', pluck('own
 
 var _setCustomAddressee = ifelse(ShowView.useCustomField, set('owner', ShowView.customFieldText), id);
 
-var toRecord = compose(_setCustomAddressee, _setOwnerAddress, _getRecord);
+var _ownerAddressSameAsLocation = Combinators.f_g_x_h_x(lambda("!=="), pluck('location'), pluck('owner_addr'));
+
+var _setCustomAddresseeIfNotOwner = ifelse(_ownerAddressSameAsLocation, _setCustomAddressee, id);
+
+var _setAddressee = ifelse(ShowView.onlyWhenOwnerDoesNotReside, _setCustomAddresseeIfNotOwner, _setCustomAddressee);
+
+var toRecord = compose(_setOwnerAddress, _setAddressee, _getRecord);
 
 return {setup: setup, all: all, toRecord: toRecord}
 })();

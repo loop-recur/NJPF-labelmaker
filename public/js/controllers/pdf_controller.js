@@ -8,5 +8,5 @@ var selectRecords = compose(map(Records.toRecord), map(ShowView.getAllFields), m
 
 var makePdf = Combinators.f_g_h.p(Pdf.generate, getLabelOption, selectRecords);
 
-return {makePdf : makePdf}
+return {makePdf : makePdf, selectRecords: selectRecords}
 })();

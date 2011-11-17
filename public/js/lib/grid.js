@@ -21,7 +21,6 @@ var Grid = (function() {
 					{name:'ownerzip',index:'ownerzip', width: 90, sorttype: "int", editable:true}
 		   	],
 		   	multiselect: true,
-				multiboxonly: true,
 				ondblClickRow: function(id){
 					$el.editRow(id, true);
 				},

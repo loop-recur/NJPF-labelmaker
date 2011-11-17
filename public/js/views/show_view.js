@@ -45,6 +45,11 @@ var init = function() {
 	$("#use_custom").change(reloadPreview);
 	$("#use_only_if_owner_does_not_reside_at_address").change(reloadPreview);
 	$("#CustomNameField").change(reloadPreview);
+	$("#ClearGrid").click(function(){ $(".jqgrow").html(""); $("#upload-form").show(); });
+	
+	var updateCount =function(){ setTimeout(function(){$("#NumberSelected").html($(".cbox:checked").length)}, 100) };
+	$('.jqgrow').click(updateCount);
+	$('.cbox').change(updateCount);
 	
 	$("#Az").click(compose(reloadPreview, compose(CleanerController.toggleUpperCase, allTextFields)));
 	$("#Flip").click(compose(reloadPreview, compose(CleanerController.flipNames, ownerField)));

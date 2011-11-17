@@ -44,7 +44,7 @@ div#label-maker
 			label(for="use_only_if_owner_does_not_reside_at_address") Only use when owner does not reside at the address
 				input(type="checkbox", id="use_only_if_owner_does_not_reside_at_address")
 			br
-			form#export(method="post", action="/export.wtg")
+			form(method="post", action="/export.wtg")
 				div
-					div
-					input(type="submit", value="Export")
+				textarea#CsvData(name="csv_data", style="display:none;")
+				input#export(type="submit", value="Export")

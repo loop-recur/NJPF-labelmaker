@@ -1,11 +1,13 @@
 var ShowView = (function() {
 	
+var FieldNames = ["owner", "location", "owneraddr", "city", "state", "zip"];
+	
 var _makeSelector = map(compose("'[aria-describedby=list_'+", "+']'"));
 
 var getSelectedFields = compose($.find, join(", "), map('".ui-state-highlight > "+'), _makeSelector);
 
 var _makeId = lambda("'#'+");
-var _makeSelectionFields = compose(join(", "), _makeSelector.p(["owner", "location", "owneraddr", "city", "state", "zip"]));
+var _makeSelectionFields = compose(join(", "), _makeSelector.p(FieldNames));
 var getAllFields = Combinators.f_g_x_h(lambda("x.find(y)"), compose($, _makeId), _makeSelectionFields);
 
 var allTextFields = getSelectedFields.p(["owner", "location", "owneraddr"]);
@@ -30,11 +32,12 @@ var init = function() {
 		if(selectedId) showPreview([selectedId]);
 	};
 	
-	$("#export").submit(function() {
+	$("#export").click(function() {
 		getRecords = compose(map(getAllFields), map('x.id'), jQuerySelect('.ui-state-highlight'));
-		var csv = compose(CSV.create('\t'), log,getRecords);
-		log(csv());
-		// $(this).parents('form').submit();
+		var getText = map(compose(".text()", $));
+		var csv = compose(CSV.create('\t'), cons(FieldNames), map(getText), getRecords);
+		$('#CsvData').val(csv);
+		$(this).parents('form').submit();
 		return false;
 	});
 	

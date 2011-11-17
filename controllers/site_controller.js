@@ -19,7 +19,14 @@ SiteController = function(app, db) {
 	});
 	
 	app.post("/export.wtg", function(req, res) {
-		res.sendfile('public/temp/export.wtg');
+		var path = 'public/temp/export.wtg';
+		var full_path = __dirname+'/../'+path;
+		
+		fs.unlink(full_path, function() {
+			fs.writeFile(full_path, req.body.csv_data, function() {
+				res.sendfile(path);
+			});
+		});
 	});
 	
 	app.post('/stub', function(req, res) {

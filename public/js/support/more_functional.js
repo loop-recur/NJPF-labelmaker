@@ -36,9 +36,13 @@ apply = function(f, args) {
 	return f.apply(f, args);
 }
 
-cons = function(xs, other) {
+unshift = defn(function(xs, other) {
+	return other.concat(xs);
+})
+
+cons = defn(function(xs, other) {
 	return [xs].concat(other);
-}
+});
 
 repeat = function(arg, n) {	
 	return nTimes(n, id.curry(arg));

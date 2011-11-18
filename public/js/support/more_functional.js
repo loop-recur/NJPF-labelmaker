@@ -132,3 +132,19 @@ set = function(attribute, fun) {
 	
 };
 
+sortBy = function(fun, xs) {
+	// altered from prototype
+	var _sortBy = function(iterator, xs, context) {
+	  return map('.value', map(function(value, index) {
+	    return {
+	      value: value,
+	      criteria: iterator.call(context, value, index)
+	    };
+	  }, xs).sort(function(left, right) {
+	    var a = left.criteria, b = right.criteria;
+	    return a < b ? -1 : a > b ? 1 : 0;
+	  }));
+	}
+	var f = fun.toFunction();
+	return _sortBy(f, xs);
+}

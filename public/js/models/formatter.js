@@ -8,5 +8,9 @@ var Formatter = (function() {
 		return [row.owner, row.location, address(row.city, row.state, row.zip)];
 	}
 	
-	return {line : line}
+	var labelOption = function(label) {
+		return label.manufacturer+ "-" +label.id+ ' ('+label.height+'"'+' x '+ label.width+ '", ' + label.amount_per_page+ ' per page)';
+	}
+	
+	return {line : line, labelOption : labelOption}
 })();

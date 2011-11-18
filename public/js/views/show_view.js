@@ -1,6 +1,6 @@
 var ShowView = (function() {
 	
-var FieldNames = ["owner", "location", "owneraddr", "city", "state", "zip"];
+var FieldNames = ["location", "city", "state", "zip", "owner", "owneraddr", "ownercity", "ownerstate", "ownerzip"];
 	
 var _makeSelector = map(compose("'[aria-describedby=list_'+", "+']'"));
 
@@ -23,14 +23,21 @@ var onlyWhenOwnerDoesNotReside = function() { return $("#use_only_if_owner_does_
 var customFieldText = function(){ return $("#CustomNameField").val(); }
 
 var init = function() {
-	populateSelect(Labels);
+	populateSelect(sortBy('x.id', Labels));
 	Grid.setup(showPreview, Records.all());
 	PushSwitch($("#Address li"));	
 	
 	var reloadPreview = function(){
-		var selectedId = $(".ui-state-highlight").attr("id");
+		var selectedId = Grid.lastSelection();
 		if(selectedId) showPreview([selectedId]);
 	};
+	
+	var clearGrid = function(){
+		$(".jqgrow").html("");
+		$("#upload-form").show();
+		$("#preview").html("");
+		$("#NumberSelected").html("");
+	}
 	
 	$("#export").click(function() {
 		getRecords = compose(map(getAllFields), map('x.id'), jQuerySelect('.ui-state-highlight'));
@@ -45,17 +52,25 @@ var init = function() {
 	$("#use_custom").change(reloadPreview);
 	$("#use_only_if_owner_does_not_reside_at_address").change(reloadPreview);
 	$("#CustomNameField").change(reloadPreview);
-	$("#ClearGrid").click(function(){ $(".jqgrow").html(""); $("#upload-form").show(); });
+	$("#ClearGrid").click(confirmBox("Are you certainly certain and surely sure?", clearGrid, id));
 	
-	var updateCount =function(){ setTimeout(function(){$("#NumberSelected").html($(".cbox:checked").length)}, 100) };
+	
+	var updateCount =function() {
+		setTimeout(function(){$("#NumberSelected").html($(".cbox:checked").length)}, 100);
+	};
+	
 	$('.jqgrow').click(updateCount);
 	$('.cbox').change(updateCount);
+	
+	$("#use_custom").change(function() {
+		$(this).is(':checked') ? $("#CustomOptions").show() : $("#CustomOptions").hide();
+	});
 	
 	$("#Az").click(compose(reloadPreview, compose(CleanerController.toggleUpperCase, allTextFields)));
 	$("#Flip").click(compose(reloadPreview, compose(CleanerController.flipNames, ownerField)));
 	
 	$("#generate").click(function() {
-		window.location.href = PdfController.makePdf();
+		window.open(PdfController.makePdf(), "windowName");
 	});
 }
 
@@ -66,11 +81,9 @@ function showPreview(ids) {
 	return Combinators.f_g_h_x(lambda('x.html(y)'), jQuerySelect("#preview"), _getHtml)(ids);
 }
 
-function populateSelect(labels) {
-	var dashJoin = compose("+'-'+");
-	
+function populateSelect(labels) {	
 	var makeOptions = function(label) {
-		var text = dashJoin(label.manufacturer, label.id);
+		var text = Formatter.labelOption(label);
 		$("#labels").append($('<option></option>').val(labels.indexOf(label)).html(text));
 	}
 	

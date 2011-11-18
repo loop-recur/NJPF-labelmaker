@@ -1,8 +1,9 @@
 var Grid = (function() {	
+	var lastSel;
+	
 	function setup(selectFun, records) {
 		var $el = $("#list");
-		var lastSel;
-
+		
 		$el.jqGrid({
 			datatype: "local",
 			height: 300,
@@ -38,5 +39,9 @@ var Grid = (function() {
 			$el.jqGrid('addRowData',i+1,records[i]);
 	}
 	
-	return {setup: setup}
+	var lastSelection = function() {
+		return lastSel;
+	}
+	
+	return {setup: setup, lastSelection : lastSelection}
 })();

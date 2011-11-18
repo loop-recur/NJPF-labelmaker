@@ -70,7 +70,7 @@ var init = function() {
 	$("#Flip").click(compose(reloadPreview, compose(CleanerController.flipNames, ownerField)));
 	
 	$("#generate").click(function() {
-		window.open(PdfController.makePdf(), "windowName");
+		window.open(PdfController.makePdf(), "labels");
 	});
 }
 

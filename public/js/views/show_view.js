@@ -52,7 +52,7 @@ var init = function() {
 	$("#use_custom").change(reloadPreview);
 	$("#use_only_if_owner_does_not_reside_at_address").change(reloadPreview);
 	$("#CustomNameField").change(reloadPreview);
-	$("#ClearGrid").click(confirmBox("Are you certainly certain and surely sure?", clearGrid, id));
+	$("#ClearGrid").click(confirmBox("Clear everything? This can't be undone.", clearGrid, id));
 	
 	
 	var updateCount =function() {

@@ -1,7 +1,10 @@
 script
 	Records.setup(!{records});
-	
+			
 div#label-maker
+	div.selected Rows Selected 
+		span#NumberSelected
+		
 	div#upload-form(style=records.length ? "display:none;" : "display:visible;")
 		form(method="post", action="/create", enctype="multipart/form-data")
 			div
@@ -21,9 +24,6 @@ div#label-maker
 		div.text-options
 			button#Flip
 			button#Az
-
-		div Rows Selected 
-			span#NumberSelected
 		
 		br
 		input#generate(type="submit", value="Create Labels")
@@ -32,10 +32,16 @@ div#label-maker
 		table#list
 	
 		div.grid-options
+			div.grid-manage
+				form(method="post", action="/export.wtg")
+					textarea#CsvData(name="csv_data", style="display:none;")
+					input#export(type="submit", value="Export")
+				button#ClearGrid Clear Grid
+		
 			h2 Send to:
 			ul#Address
 				li#Residents.active
-					a resident
+					a location
 				li#Owner
 					a owner
 			div.clear
@@ -45,11 +51,5 @@ div#label-maker
 			input#CustomNameField(type="text")
 			br
 			div#CustomOptions(style="display:none;")
-				label(for="use_only_if_owner_does_not_reside_at_address") Only use when owner does not reside at the address
+				label(for="use_only_if_owner_does_not_reside_at_address") Only use when owner does not reside at address
 					input(type="checkbox", id="use_only_if_owner_does_not_reside_at_address")
-			br
-			form(method="post", action="/export.wtg")
-				div
-				textarea#CsvData(name="csv_data", style="display:none;")
-				input#export(type="submit", value="Export")
-			button#ClearGrid Clear Grid

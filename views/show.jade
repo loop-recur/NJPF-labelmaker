@@ -44,8 +44,9 @@ div#label-maker
 				input(type="checkbox", id="use_custom")
 			input#CustomNameField(type="text")
 			br
-			label(for="use_only_if_owner_does_not_reside_at_address") Only use when owner does not reside at the address
-				input(type="checkbox", id="use_only_if_owner_does_not_reside_at_address")
+			div#CustomOptions(style="display:none;")
+				label(for="use_only_if_owner_does_not_reside_at_address") Only use when owner does not reside at the address
+					input(type="checkbox", id="use_only_if_owner_does_not_reside_at_address")
 			br
 			form(method="post", action="/export.wtg")
 				div

@@ -9,11 +9,12 @@ div#label-maker
 		form(method="post", action="/create", enctype="multipart/form-data")
 			div
 				div
-					span Import
-					br
-					input(type="file", name="labels")
-				div
-					input(type="submit", value="send")
+					div.excel
+					div.import-options
+						p Import
+						input#chooseFile(type="file", name="labels")
+				div.clear
+					input#send(type="submit", value="")
 	div.preview-options
 		
 		div.label-container
@@ -33,10 +34,10 @@ div#label-maker
 	
 		div.grid-options
 			div.grid-manage
+				button#ClearGrid
 				form(method="post", action="/export.wtg")
 					textarea#CsvData(name="csv_data", style="display:none;")
-					input#export(type="submit", value="Export")
-				button#ClearGrid Clear Grid
+					input#export(type="submit", value="")
 		
 			h2 Send to:
 			ul#Address
@@ -45,7 +46,7 @@ div#label-maker
 				li#Owner
 					a owner
 			div.clear
-			h2 Addressee Options
+			h2 Addressee Options:
 			label(for="use_custom") Use Custom Name
 				input(type="checkbox", id="use_custom")
 			input#CustomNameField(type="text")

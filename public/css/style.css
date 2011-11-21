@@ -61,6 +61,9 @@ input[type=text], input[type=password] {
 	border-radius: 2px;
 }
 
+body {
+	font-family: helvetica;
+}
 /* END RESET CSS */
 
 /* CUSTOM SELECT */
@@ -128,15 +131,17 @@ span.customStyleSelectBox.changed {  }
 }
 
 .text-options {
-	width: 245px;
+	width: 255px;
 	margin:0 auto;
 }
+/* BUTTONS */
 
 #Flip {
 	background: url("../images/lm_nameorder_swap.png") no-repeat;
 	width: 153px;
 	height:45px;
 	border:none;
+	margin-right:10px;
 }
 
 #Flip:active {
@@ -154,6 +159,22 @@ span.customStyleSelectBox.changed {  }
 	background: url("../images/lm_capitalization_swap_down.png") no-repeat;
 }
 
+#ClearGrid {
+	background: url("../images/lm_clear_grid_button.png") no-repeat;
+	width: 120px;
+	height:35px;
+	border:none;
+	margin-right:10px;
+	float:left;
+}
+
+#export {
+	background: url("../images/le_export_button.png") no-repeat;
+	width: 90px;
+	height:35px;
+	border:none;
+}
+
 #generate {
 	background: url("../images/lm_go_button.png") no-repeat;
 	border:none;
@@ -163,10 +184,31 @@ span.customStyleSelectBox.changed {  }
 	margin-right:9.375%;
 	font-size: 20px;
 	display:block;
+	text-shadow: white 0px 1px 0px;
 }
 
 #generate:active {
 	background: url("../images/lm_go_button_down.png") no-repeat;
+}
+
+#chooseFile {
+	width: 170px;
+}
+
+#send {
+	background: url("../images/lm_add_button.png") no-repeat;
+	width: 156px;
+	height:30px;
+	border:none;
+	margin:5px;
+}
+
+.excel {
+	background: url("../images/lm_excel_icon.png") no-repeat;
+	width: 60px;
+	height:60px;
+	border:none;
+	float:left;
 }
 
 /*GRID AREA */
@@ -183,6 +225,7 @@ span.customStyleSelectBox.changed {  }
 
 .grid-options h2 {
 	font-size:14px;
+	margin-top: 7px;
 }
 
 .grid-options ul {
@@ -235,6 +278,28 @@ span.customStyleSelectBox.changed {  }
 }
 
 .grid-manage {
-	width: 200px;
+	width: 220px;
 	float:right;
+	margin:5px;
+}
+
+.import-options {
+	width: 240px;
+}
+
+
+
+
+
+
+
+/* JQUERY UPDATES */
+
+.ui-jqgrid .ui-jqgrid-htable th div {
+	top:4px;
+}
+
+.ui-jqgrid tr.ui-row-ltr td {
+	position: relative;
+	top: 5px;
 }

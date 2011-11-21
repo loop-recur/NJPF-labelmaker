@@ -1,8 +1,18 @@
 var Grid = (function() {	
-	var lastSel;
+	var $el = null;
+	var lastSel, lastCheckedSel;
+	var fieldNames = ["location", "city", "state", "zip", "owner", "owneraddr", "ownercity", "ownerstate", "ownerzip"];
 	
-	function setup(selectFun, records) {
-		var $el = $("#list");
+	function selectRow(id) {
+		if(id !== lastSel) {
+			$el.saveRow(lastSel); //todo, save record too.
+			lastSel = id;
+			if($('#'+id).find('.cbox').is(":checked")) lastCheckedSel = id;
+		}
+	}
+	
+	function setup(records) {
+		$el = $("#list");
 		
 		$el.jqGrid({
 			datatype: "local",
@@ -22,16 +32,11 @@ var Grid = (function() {
 					{name:'ownerzip',index:'ownerzip', width: 90, sorttype: "int", editable:true}
 		   	],
 		   	multiselect: true,
+				multiboxonly: true,
 				ondblClickRow: function(id){
 					$el.editRow(id, true);
 				},
-			  onSelectRow: function(id) {
-					if(id !== lastSel) {
-						$el.saveRow(lastSel); //todo, save record too.
-						selectFun([id]);
-						lastSel = id;
-					}
-				},
+			  onSelectRow: selectRow,
 				editurl: "/stub",
 		   	caption: "Mailing Labels"
 		});
@@ -40,8 +45,8 @@ var Grid = (function() {
 	}
 	
 	var lastSelection = function() {
-		return lastSel;
+		return lastCheckedSel;
 	}
 	
-	return {setup: setup, lastSelection : lastSelection}
+	return {setup: setup, lastSelection : lastSelection, fieldNames: fieldNames, selectRow: selectRow}
 })();

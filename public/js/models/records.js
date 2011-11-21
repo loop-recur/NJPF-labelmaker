@@ -8,11 +8,9 @@ var all = function() { return records };
 
 var _getText = map(compose('.text()', $));
 
-var _transformToRecord = compose(tupleToObj, zip.p(["location", "city", "state", "zip", "owner", "owner_addr"]));
+var _transformToRecord = compose(tupleToObj, zip.p(Grid.fieldNames));
 
 var _getRecord = compose(_transformToRecord, _getText);
-
-var _setOwnerAddress = ifelse(ShowView.ownerSelected, set('location', pluck('owner_addr')), id);
 
 var _setCustomAddressee = ifelse(ShowView.useCustomField, set('owner', ShowView.customFieldText), id);
 
@@ -22,7 +20,13 @@ var _setCustomAddresseeIfNotOwner = ifelse(_ownerAddressSameAsLocation, _setCust
 
 var _setAddressee = ifelse(ShowView.onlyWhenOwnerDoesNotReside, _setCustomAddresseeIfNotOwner, _setCustomAddressee);
 
-var toRecord = compose(_setOwnerAddress, _setAddressee, _getRecord);
+var _setForOwner = function(name, mapping) { return set(name, pluck('owner'+ (mapping || name))); };
+
+var _setOwnerAddress = compose(_setForOwner('city'), _setForOwner('state'), _setForOwner('zip'), _setForOwner('location', 'addr'));
+
+var _setAddress = ifelse(ShowView.ownerSelected, _setOwnerAddress, id);
+
+var toRecord = compose(_setAddress, _setAddressee, _getRecord);
 
 return {setup: setup, all: all, toRecord: toRecord}
 })();

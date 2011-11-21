@@ -1,13 +1,11 @@
 var ShowView = (function() {
 	
-var FieldNames = ["location", "city", "state", "zip", "owner", "owneraddr", "ownercity", "ownerstate", "ownerzip"];
-	
 var _makeSelector = map(compose("'[aria-describedby=list_'+", "+']'"));
 
 var getSelectedFields = compose($.find, join(", "), map('".ui-state-highlight > "+'), _makeSelector);
 
 var _makeId = lambda("'#'+");
-var _makeSelectionFields = compose(join(", "), _makeSelector.p(FieldNames));
+var _makeSelectionFields = compose(join(", "), _makeSelector.p(Grid.fieldNames));
 var getAllFields = Combinators.f_g_x_h(lambda("x.find(y)"), compose($, _makeId), _makeSelectionFields);
 
 var allTextFields = getSelectedFields.p(["owner", "location", "owneraddr"]);
@@ -24,7 +22,7 @@ var customFieldText = function(){ return $("#CustomNameField").val(); }
 
 var init = function() {
 	populateSelect(sortBy('x.id', Labels));
-	Grid.setup(showPreview, Records.all());
+	Grid.setup(Records.all());
 	PushSwitch($("#Address li"));	
 	
 	var reloadPreview = function(){
@@ -42,7 +40,7 @@ var init = function() {
 	$("#export").click(function() {
 		getRecords = compose(map(getAllFields), map('x.id'), jQuerySelect('.ui-state-highlight'));
 		var getText = map(compose(".text()", $));
-		var csv = compose(CSV.create('\t'), cons(FieldNames), map(getText), getRecords);
+		var csv = compose(CSV.create('\t'), cons(Grid.fieldNames), map(getText), getRecords);
 		$('#CsvData').val(csv);
 		$(this).parents('form').submit();
 		return false;
@@ -59,8 +57,8 @@ var init = function() {
 		setTimeout(function(){$("#NumberSelected").html($(".cbox:checked").length)}, 100);
 	};
 	
-	$('.jqgrow').click(updateCount);
-	$('.cbox').change(updateCount);
+	$('.jqgrow').click(function(e){ Grid.selectRow(this.id); showPreview(); e.stopPropagation(); })
+	$('.cbox').change(function(){ Grid.selectRow(this.id); updateCount(); showPreview(); });
 	
 	$("#use_custom").change(function() {
 		$(this).is(':checked') ? $("#CustomOptions").show() : $("#CustomOptions").hide();
@@ -75,6 +73,8 @@ var init = function() {
 }
 
 function showPreview(ids) {
+	if(!ids && Grid.lastSelection()) ids = [Grid.lastSelection()];
+	if(!ids || ids.length < 1) return;
 	var _getLines = compose(join('<br>'), Formatter.line);
 	var _getHtml = compose(_getLines, Records.toRecord, getAllFields);
 	

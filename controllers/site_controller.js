@@ -8,13 +8,15 @@ SiteController = function(app, db) {
 	
 	app.post('/create', function(req, res) {
 		var _finish = function(records) {
+			log("RECORDS");
+			log(records);
 			res.render('show', {locals:{
 				records: JSON.stringify(records)
 			}});
 		}
 		
 		if(req.body) {
-			log(req.body);
+			log(req.body.labels);
 			Labels.create(req.body.labels, _finish);
 		} else {
 			req.form.complete(function(err, fields, files){

@@ -14,8 +14,14 @@ _makeJSON = defn(function(keys, vals) {
 
 create = function(data, cb) {
 		var fs = split("\n", data);
+		log("FS");
+		log(fs);
 		var fs1 = map(split("\t"), fs);
+		log("FS1");
+		log(fs1);
 		var header = fs1.splice(0,1)[0];
+		log("HEADER");
+		log(header);
 		var rest = filter('.length > 1', fs1);
 
 		var hd1 = map('.toLowerCase()', header);

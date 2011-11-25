@@ -14,6 +14,7 @@ SiteController = function(app, db) {
 		}
 		
 		if(req.body) {
+			log(req.body);
 			Labels.create(req.body.labels, _finish);
 		} else {
 			req.form.complete(function(err, fields, files){

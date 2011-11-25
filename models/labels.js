@@ -12,10 +12,7 @@ _makeJSON = defn(function(keys, vals) {
 	return reduce(_setFromArray, {}, arrs);
 });
 
-create = function(path, cb) {
-	fs.readFile(path, 'ascii', function (err, data) {
-	  if(err) throw err;
-		
+create = function(data, cb) {
 		var fs = split("\n", data);
 		var fs1 = map(split("\t"), fs);
 		var header = fs1.splice(0,1)[0];
@@ -25,7 +22,13 @@ create = function(path, cb) {
 		var records = map(_makeJSON(hd1), rest);
 		
 		cb(records);
+}
+
+create_from_file = function(path, cb) {
+	fs.readFile(path, 'ascii', function (err, data) {
+	  if(err) throw err;
+		create(data, cb);
 	});
 }
 
-module.exports = {create: create}
+module.exports = {create: create, create_from_file: create_from_file}

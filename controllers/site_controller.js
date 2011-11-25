@@ -6,16 +6,20 @@ SiteController = function(app, db) {
 		res.render('show', {locals: {records: []}});
 	});
 	
-	app.post('/create', function(req, res) {		
-		req.form.complete(function(err, fields, files){
-				var _finish = function(records) {
-					res.render('show', {locals:{
-						records: JSON.stringify(records)
-					}});
-				}
-
-				Labels.create(files.labels.path, _finish);
-	  });
+	app.post('/create', function(req, res) {
+		var _finish = function(records) {
+			res.render('show', {locals:{
+				records: JSON.stringify(records)
+			}});
+		}
+		
+		if(req.body) {
+			Labels.create(req.body.labels, _finish);
+		} else {
+			req.form.complete(function(err, fields, files){
+				Labels.create_from_file(files.labels.path, _finish);
+		  });
+		}
 	});
 	
 	app.post("/export.wtg", function(req, res) {

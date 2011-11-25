@@ -9,6 +9,8 @@ _setFromArray = function(obj, vals){
 
 _makeJSON = defn(function(keys, vals) {
 	var arrs = zip(keys, vals);
+	log("arrs");
+	log(arrs);
 	return reduce(_setFromArray, {}, arrs);
 });
 
@@ -16,8 +18,6 @@ create = function(data, cb) {
 		var fs = split("\n", data);
 		var fs1 = map(split("\t"), fs);
 		var header = fs1.splice(0,1)[0];
-		log("HEADER");
-		log(header);
 		var rest = filter('.length > 1', fs1);
 
 		var hd1 = map('.toLowerCase()', header);

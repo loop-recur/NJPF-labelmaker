@@ -19,7 +19,8 @@ create = function(data, cb) {
 		var fs1 = map(split("\t"), fs);
 		var header = fs1.splice(0,1)[0];
 		var rest = filter('.length > 1', fs1);
-
+		log("rest");
+		log(rest);
 		var hd1 = map('.toLowerCase()', header);
 		var records = map(_makeJSON(hd1), rest);
 		

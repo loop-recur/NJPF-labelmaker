@@ -57,8 +57,13 @@ var init = function() {
 		setTimeout(function(){$("#NumberSelected").html($(".cbox:checked").length)}, 100);
 	};
 	
+	var setHighlight = function($cbox) {
+		var $tr = $($cbox.parents("tr"));
+		$cbox.is(":checked") ? $tr.addClass('ui-state-highlight') : $tr.removeClass('ui-state-highlight');
+	}
+	
 	$('.jqgrow').click(function(e){ Grid.selectRow(this.id); showPreview(); e.stopPropagation(); })
-	$('.cbox').change(function(){ Grid.selectRow(this.id); updateCount(); showPreview(); });
+	$('.cbox').change(function(){ setHighlight($(this)); Grid.selectRow(this.id); updateCount(); showPreview(); });
 	
 	$("#use_custom").change(function() {
 		$(this).is(':checked') ? $("#CustomOptions").show() : $("#CustomOptions").hide();

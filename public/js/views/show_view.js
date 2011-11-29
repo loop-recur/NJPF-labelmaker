@@ -59,6 +59,7 @@ var init = function() {
 	
 	var setHighlight = function($cbox) {
 		var $tr = $($cbox.parents("tr"));
+		if($tr.hasClass('ui-jqgrid-labels')) return true;
 		$cbox.is(":checked") ? $tr.addClass('ui-state-highlight') : $tr.removeClass('ui-state-highlight');
 	}
 	

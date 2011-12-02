@@ -9,8 +9,6 @@ _setFromArray = function(obj, vals){
 
 _makeJSON = defn(function(keys, vals) {
 	var arrs = zip(keys, vals);
-	log("arrs");
-	log(arrs);
 	return reduce(_setFromArray, {}, arrs);
 });
 

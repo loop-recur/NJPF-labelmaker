@@ -72,11 +72,25 @@ var init = function() {
 	
 	$("#Az").click(compose(reloadPreview, compose(CleanerController.toggleUpperCase, allTextFields)));
 	$("#Flip").click(compose(reloadPreview, compose(CleanerController.flipNames, ownerField)));
-	
-	$("#generate").click(function() {
-		window.open(PdfController.makePdf(), "labels");
+	 makeDownloadable();
+}
+
+function makeDownloadable(){
+	Downloadify.create('downloadify',{
+		filename: 'wtg_labels.pdf',
+		data: PdfController.makePdf,
+		onComplete: function(){ alert('Your File Has Been Saved!'); },
+		onCancel: function(){ alert('You have cancelled the saving of this file.'); },
+		onError: function(){ alert('You must put something in the File Contents or there will be nothing to save!'); },
+		swf: 'js/support/downloadify/media/downloadify.swf',
+		downloadImage: 'images/download.png',
+		width: 392,
+		height: 78,
+		transparent: true,
+		append: false
 	});
 }
+
 
 function showPreview(ids) {
 	if(!ids && Grid.lastSelection()) ids = [Grid.lastSelection()];

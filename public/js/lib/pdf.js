@@ -56,7 +56,7 @@ var Pdf = (function() {
 		
 		doc.setFontSize(font_size);
 		reduce(buildLabels, {left : left_margin, top : top_margin, current_amount: 0, current_column: 1}, records);
-		return doc.output('datauri');
+		return doc.output();
 	});
 	
 	

@@ -85,7 +85,7 @@ function makeDownloadable(){
 		swf: 'js/support/downloadify/media/downloadify.swf',
 		downloadImage: 'images/download.png',
 		width: 392,
-		height: 78,
+		height: 79,
 		transparent: true,
 		append: false
 	});

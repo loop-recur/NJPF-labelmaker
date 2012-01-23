@@ -22,8 +22,8 @@ SiteController = function(app, db) {
 		}
 	});
 	
-	app.post("/export.wtg", function(req, res) {
-		var path = 'public/temp/export.wtg';
+	app.post("/export.csv", function(req, res) {
+		var path = 'public/temp/export.csv';
 		var full_path = __dirname+'/../'+path;
 		
 		fs.unlink(full_path, function() {

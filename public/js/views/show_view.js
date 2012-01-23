@@ -104,7 +104,7 @@ function showPreview(ids) {
 function populateSelect(labels) {	
 	var makeOptions = function(label) {
 		var text = Formatter.labelOption(label);
-		$("#labels").append($('<option></option>').val(labels.indexOf(label)).html(text));
+		$("#labels").append($('<option></option>').val(label.id).html(text));
 	}
 	
 	map(makeOptions, labels);

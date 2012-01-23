@@ -4,6 +4,9 @@ var Pdf = (function() {
 		var doc = new jsPDF();
 		var pixel_conversion_number = 30.3;
 		
+		console.log('====label===');
+		console.log(label);
+		
 		var width = label.width;
 		var height = label.height;
 		var amount_per_page = label.amount_per_page;
@@ -21,6 +24,8 @@ var Pdf = (function() {
 		
 		var column_amount = Math.floor(paper_width / width);
 		
+		console.log(column_amount);
+		
 		var writeLine = defn(function(top, left, number, text) {
 			doc.text(left, top+line_height*number, text);
 			return number+1;
@@ -34,7 +39,7 @@ var Pdf = (function() {
 			addLabel(state.top, state.left, row);
 			
 			var next_column = (state.current_column >= column_amount) ?  1 : (state.current_column + 1);
-			
+
 			var next_amount = state.current_amount+1;
 			var next_left = horizontal_spacing * state.current_column + left_margin;
 			var next_top = state.top;

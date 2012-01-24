@@ -40,7 +40,7 @@ var init = function() {
 	$("#export").click(function() {
 		getRecords = compose(map(getAllFields), map('x.id'), jQuerySelect('.ui-state-highlight'));
 		var getText = map(compose(".text()", $));
-		var csv = compose(CSV.create('\t'), cons(Grid.fieldNames), map(getText), getRecords);
+		var csv = compose(CSV.create(','), cons(Grid.fieldNames), map(getText), getRecords);
 		$('#CsvData').val(csv);
 		$(this).parents('form').submit();
 		return false;

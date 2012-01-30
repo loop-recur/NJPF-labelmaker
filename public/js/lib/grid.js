@@ -40,8 +40,8 @@ var Grid = (function() {
 				editurl: "/stub",
 		   	caption: "Mailing Labels"
 		});
-		for(var i=0;i<=records.length;i++)
-			$el.jqGrid('addRowData',i+1,records[i]);
+		
+		if(records) for(var i=0;i<=records.length;i++) $el.jqGrid('addRowData',i+1,records[i]);
 	}
 	
 	var lastSelection = function() {

@@ -112,7 +112,5 @@ var Labels =
 ,
 	{ manufacturer: "Avery", id: 8867, width:1.75, height:0.5, amount_per_page: 80
 		,left_margin:0.333, top_margin:0.5, right_margin:0.333, bottom_margin:0.5, vertical_spacing:0, horizontal_spacing:0.281 }
-,
-
 
 ];

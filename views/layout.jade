@@ -6,6 +6,9 @@ html(lang="en")
 			link(href='css/jquery.jqGrid-4.2.0/ui.jqgrid.css', rel='stylesheet', type='text/css')
 			link(href='css/style.css', rel='stylesheet', type='text/css')
 		block scripts
+			//if lt IE 8
+				script(src='js/support/es5-shim.min.js')
+
 			script(src='js/support/jquery-1.6.2.min.js')
 			script(src='js/customSelect.jquery.js')
 			script(src='js/support/jquery.jqGrid-4.2.0/js/grid.locale-en.js')

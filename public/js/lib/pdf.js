@@ -4,9 +4,6 @@ var Pdf = (function() {
 		var doc = new jsPDF();
 		var pixel_conversion_number = 30.3;
 		
-		console.log('====label===');
-		console.log(label);
-		
 		var width = label.width;
 		var height = label.height;
 		var amount_per_page = label.amount_per_page;
@@ -23,8 +20,6 @@ var Pdf = (function() {
 		var line_height = font_size / 2;
 		
 		var column_amount = Math.floor(paper_width / width);
-		
-		console.log(column_amount);
 		
 		var writeLine = defn(function(top, left, number, text) {
 			doc.text(left, top+line_height*number, text);

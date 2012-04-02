@@ -11,7 +11,7 @@ var Pdf = (function() {
 		var paper_width = 8.5;
 		
 		var left_margin = label.left_margin;
-		var top_margin = 20 + label.top_margin; // what is 20?
+		var top_margin = 11 + label.top_margin; // what is 20?
 
 		var horizontal_spacing = (width + label.horizontal_spacing) * pixel_conversion_number;
 		var vertical_spacing = (height + label.vertical_spacing) * pixel_conversion_number;

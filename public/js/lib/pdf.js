@@ -2,7 +2,7 @@ var Pdf = (function() {
 	
 	var generate = defn(function(label, records) {
 		var doc = new jsPDF();
-		var pixel_conversion_number = 30.3;
+		var pixel_conversion_number = 25.6;
 		
 		var width = label.width;
 		var height = label.height;
@@ -10,8 +10,8 @@ var Pdf = (function() {
 		
 		var paper_width = 8.5;
 		
-		var left_margin = label.left_margin;
-		var top_margin = 11 + label.top_margin; // what is 20?
+		var left_margin = 6 + label.left_margin;
+		var top_margin = 37 + label.top_margin; // what is 20?
 
 		var horizontal_spacing = (width + label.horizontal_spacing) * pixel_conversion_number;
 		var vertical_spacing = (height + label.vertical_spacing) * pixel_conversion_number;
